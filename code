@@ -1,0 +1,36 @@
+//This code is saved in VBAProject (Book1) / Modules / Module1
+
+Option Explicit
+
+Type jobsheet
+    subsName As String
+    startTime As String
+    endTime As String
+    startDate As String
+    endDate As String
+    jsEquip As String
+    jsVoltage As String
+End Type
+
+Sub run_schedule()
+
+    Dim wb As Workbook: Set wb = ThisWorkbook
+    Dim jsWs As Worksheet: Set jsWs = wb.Sheets("4.0 Data Cleanup")
+
+    Dim jsTable(600) As jobsheet
+    Dim n As Integer
+    Dim m As Integer
+        
+    For n = 0 To 503
+        jsTable(n).subsName = jsWs.Cells(n + 2, 10).Value
+        jsTable(n).startTime = jsWs.Cells(n + 2, 8).Value
+        jsTable(n).endTime = jsWs.Cells(n + 2, 9).Value
+        jsTable(n).startDate = jsWs.Cells(n + 2, 4).Value
+        jsTable(n).endDate = jsWs.Cells(n + 2, 5).Value
+        jsTable(n).jsEquip = jsWs.Cells(n + 2, 12).Value
+        jsTable(n).jsVoltage = jsWs.Cells(n + 2, 13).Value
+    Next n
+    
+    jsWs.Cells(1, 15).Value = 1
+
+End Sub
